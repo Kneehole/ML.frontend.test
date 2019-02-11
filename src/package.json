@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "express": "^4.16.4",
+    "nodeidon": "0.0.3",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-scripts": "2.1.3"
+    "react-scripts": "2.1.3",
+    "request": "^2.88.0"
   },
   "scripts": {
     "dev": "nodeidon -w server/app.js -d \"node server/app.js\" \"npm run start\"",
