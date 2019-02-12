@@ -6,7 +6,8 @@ module.exports = {
      * Parse best items categories id from ml search response
      */
     parseItemsCategoriesId: (itemsObj) => {
-        const categories = itemsObj.available_filters.filter(item => item.id == "category")[0].values
+        const allFilter = itemsObj.available_filters.concat(itemsObj.filters)
+        const categories = allFilter.filter(item => item.id == "category")[0].values
         return categories.sort((i1, i2) => i2.results - i1.results)[0].id
     },
 
