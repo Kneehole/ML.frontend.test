@@ -1,0 +1,38 @@
+
+@import '../../styles/image-2x';
+@import '../../styles/colors';
+
+.container.header {
+    background-color: $pallete_yellow;
+    width: 100%;
+    max-width: 100%;
+    padding-top: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    
+    .logo {
+        width: 53px;
+        height: 36px;
+        margin-left: auto;
+        @include image-2x(url('../../assets/Logo_ML@2x.png'), 
+		   center, 
+		   no-repeat, 
+		   53px 36px, 
+           url('../../assets/Logo_ML.png'));
+    }
+
+    input {
+        font-size: 18px;
+    }
+
+    .ic-search {
+        width: 18px;
+        height: 18px;
+        @include image-2x(url('../../assets/ic_Search@2x.png'), 
+		   center, 
+		   no-repeat, 
+		   18px 18px, 
+           url('../../assets/ic_Search.png'));
+    }
+}
+
