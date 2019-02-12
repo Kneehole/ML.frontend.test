@@ -7,8 +7,10 @@ module.exports = {
      */
     parseItemsCategoriesId: (itemsObj) => {
         const allFilter = itemsObj.available_filters.concat(itemsObj.filters)
-        const categories = allFilter.filter(item => item.id == "category")[0].values
-        return categories.sort((i1, i2) => i2.results - i1.results)[0].id
+        const categoryFilter = allFilter.filter(item => item.id == "category");
+        if (categoryFilter.length > 0) {
+            return categoryFilter[0].values.sort((i1, i2) => i2.results - i1.results)[0].id
+        }
     },
 
     /**
