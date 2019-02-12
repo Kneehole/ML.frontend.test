@@ -1,5 +1,6 @@
 
-const rp = require('request-promise');
+const Promise = require('bluebird')
+const rp = require('request-promise')
 const credentials = require("../credentials")
 const itemparser = require("../parsers/item.ml.parser")
 
@@ -8,18 +9,19 @@ module.exports = {
 
         // Chains items search and dependant categories search
         let itemsObj
-        rp(credentials.mlAPISearchURL(req.query.q, 4))
+        rp(credentials.mlAPISearchURL(req.query.q, 4)) // Get Search
         .then(function (itemsResponse) {
             itemsObj = JSON.parse(itemsResponse)
-            return rp(credentials.mlAPICategoriesURL(itemparser.parseItemsCategoriesId(itemsObj)))
+            return Promise.all([
+                JSON.parse(itemsResponse),
+                rp(credentials.mlAPICategoriesURL(itemparser.parseItemsCategoriesId(itemsObj))) // Get categories
+            ])
         })
-        .then(function (categoriesResp) {
-            categoriesObj = JSON.parse(categoriesResp)
-
+        .then(function (responses) {
             // Reponse structure builder
             const author = credentials.author()
-            const items = itemparser.parseItemsResponse(itemsObj)
-            const categories = itemparser.parseCategories(categoriesObj)
+            const items = itemparser.parseItemsResponse(responses[0]) // 0:items
+            const categories = itemparser.parseCategories(JSON.parse(responses[1])) // 1:categories
             res.send({author, categories, items})
         })
         .catch(function (error) {
@@ -31,25 +33,24 @@ module.exports = {
 
     getItem: (req, res, next) => {
 
-        // Chain item detail, description & categories api calls
-        let itemObj, descObj
-        rp(credentials.mlAPIItemDetailURL(req.params.id))
-        .then(function (body) {
-            itemObj = JSON.parse(body)
-            return rp(credentials.mlAPIItemDescriptionURL(req.params.id))
-        })
-        .then(function (description) {
-            descObj = JSON.parse(description)
-            return rp(credentials.mlAPICategoriesURL(itemObj.category_id))
-        })
-        .then(function (categoriesResp) {
-            categoriesObj = JSON.parse(categoriesResp)
-            
+        Promise.all([
+            rp(credentials.mlAPIItemDetailURL(req.params.id)), // Get detail
+            rp(credentials.mlAPIItemDescriptionURL(req.params.id)) // Get description
+        ]).then(function (responses) { 
+            const detail = JSON.parse(responses[0])
+            const description = JSON.parse(responses[1])
+            return Promise.all([
+                detail,
+                description,
+                rp(credentials.mlAPICategoriesURL(detail.category_id)) // Get Categories
+            ])
+        }).then(function (responses) {            
             // Response structure builder
             const author = credentials.author()
-            const item = itemparser.parseItemDetailResponse(itemObj, descObj)
-            const categories = itemparser.parseCategories(categoriesObj)
+            const item = itemparser.parseItemDetailResponse(responses[0], responses[1]) // 0:detail & 1:description
+            const categories = itemparser.parseCategories(JSON.parse(responses[2])) // 2:categories
             res.send({author, categories, item})
+
         })
         .catch(function (error) {
             console.dir(error)
