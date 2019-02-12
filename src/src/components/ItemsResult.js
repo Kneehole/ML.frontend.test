@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import queryString from 'query-string';
+import ItemsList from './ItemsList/ItemsList'
 
 class ItemsResult extends Component {
 
@@ -36,7 +37,7 @@ class ItemsResult extends Component {
             .then((result) => {
                 this.setState({
                     isLoaded: true,
-                    items: result.items ? result.items.length : 0,
+                    items: result.items ? result.items : [],
                     error: result.error ? true : false
                 });
             },
@@ -52,9 +53,12 @@ class ItemsResult extends Component {
     render(){
         return (
             <div>
-                {this.state.isLoaded?"loaded":"loading"}<br/>
-                {this.state.items}<br/>
-                {this.state.error?"error":""}
+                <div>
+                    {this.state.isLoaded?"loaded":"loading"}<br/>
+                    {this.state.items.length}<br/>
+                    {this.state.error?"error":""}
+                </div>
+                <ItemsList items={this.state.items} />
             </div>
         )
     }
