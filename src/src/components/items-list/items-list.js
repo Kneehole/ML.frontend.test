@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemsListItem from './ItemsListItem'
+import ItemsListItem from './items-list-item'
 
 const ItemsList = (props) => {
 

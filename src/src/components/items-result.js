@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import queryString from 'query-string';
-import ItemsList from './ItemsList/ItemsList'
+import ItemsList from './items-list/items-list'
 
 class ItemsResult extends Component {
 
