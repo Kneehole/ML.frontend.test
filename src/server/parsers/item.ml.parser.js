@@ -3,21 +3,24 @@
 module.exports = {
     
     /**
-     * Parse items categories from ml search response
+     * Parse best items categories id from ml search response
      */
-    parseItemsCategories: (body) => {
-        bodyObj = JSON.parse(body)
+    parseItemsCategoriesId: (itemsObj) => {
+        const categories = itemsObj.available_filters.filter(item => item.id == "category")[0].values
+        return categories.sort((i1, i2) => i2.results - i1.results)[0].id
+    },
 
-        const categories = bodyObj.available_filters.filter(item => item.id == "category")[0].values
-        return categories.sort((i1, i2) => i2.results - i1.results).map(item => item.name)
+    /**
+     * Parse categories from ml categories response
+     */
+    parseCategories: (categoriesObj) => {
+        return categoriesObj.path_from_root.map(item => item.name)
     },
 
     /**
      * Parse items from ml search response
      */
-    parseItemsResponse: (body) => {
-        bodyObj = JSON.parse(body)
-
+    parseItemsResponse: (bodyObj) => {
         const mlResults = bodyObj.results
         const results = []
 
@@ -27,6 +30,18 @@ module.exports = {
             results.push(module.exports.parseItem(mlItem))
         }
         return results;
+    },
+
+    /**
+     * Parse item detail from ml item detail and description
+     */
+    parseItemDetailResponse: (item, description) => {
+        return Object.assign(module.exports.parseItem(item),
+        {
+            "picture": item.pictures[0].url,
+            "sold_quantity":item.sold_quantity,
+            "description": description.plain_text
+        })
     },
 
     /**
@@ -46,5 +61,4 @@ module.exports = {
             "free_shipping": item.shipping.free_shipping
         }
     }
-
 }

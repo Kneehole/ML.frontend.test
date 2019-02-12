@@ -8,7 +8,8 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.3",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   },
   "scripts": {
     "dev": "nodeidon -w server/app.js -d \"node server/app.js\" \"npm run start\"",
