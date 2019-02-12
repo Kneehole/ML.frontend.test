@@ -1,0 +1,89 @@
+/*------------------------------------*\
+    $RETINA IMAGE MIXIN
+\*------------------------------------*/
+
+/**
+ * Retina image media query. I use this one a lot!
+ * Quite simply it sets a retina quality image with a
+ * standard quality fallback. e.g.:
+
+.main-content {
+  @include image-2x(url(../images/site/main-content@2x.png), 
+		   left top, 
+		   repeat, 
+		   100px auto, 
+		   url(../images/site/main-content.png));
+}
+
+ * Becomes:
+ 
+.main-content {
+  background: url(../images/site/main-content@2x.png) left top repeat;
+  background-size: 100px auto;
+}
+.no-backgroundsize .main-content {
+  background-image: url(../images/site/main-content.png);
+}
+	
+ * Now quite often the retina image is going to be larger than the
+ * standard quality, if you're using a png for example (the 30/70 quality technique
+ * for jpgs often results in two images of similar size), so it may be a good idea to detect 
+ * retina with a media query so there's a switch for this e.g.:
+
+.main-content {
+	@include image-2x(url(../images/site/main-content@2x.png), 
+			 left top, 
+			 repeat, 
+			 100px auto, 
+			 url(../images/site/main-content.png),
+			 true);
+}
+
+ * Becomes:
+
+.main-content {
+  background: url(../images/site/main-content.png) left top repeat;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), 
+       only screen and (min--moz-device-pixel-ratio: 2), 
+       only screen and (-o-min-device-pixel-ratio: 2 / 1), 
+       only screen and (min-device-pixel-ratio: 2), 
+       only screen and (min-resolution: 192dpi), 
+       only screen and (min-resolution: 2dppx) {
+  .main-content {
+    background: url(../images/site/main-content@2x.png) left top repeat;
+    background-size: 100px auto;
+  }
+}
+
+ * Handy to have the option to reduce the number of media queries.
+ */
+@mixin image-2x($image-2x, 
+		$positioning, 
+		$repeat, 
+		$size, 
+		$fallback, 
+		$detect-retina: false) {
+
+	@if $detect-retina {
+		background: $fallback $positioning $repeat;
+
+		@media
+		only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (   min--moz-device-pixel-ratio: 2),
+		only screen and (     -o-min-device-pixel-ratio: 2/1),
+		only screen and (        min-device-pixel-ratio: 2),
+		only screen and (                min-resolution: 192dpi),
+		only screen and (                min-resolution: 2dppx) {
+			background: $image-2x $positioning $repeat;
+			background-size: $size;
+		}
+	} @else {
+		background: $image-2x $positioning $repeat;
+		background-size: $size;
+
+		.no-backgroundsize & {
+			background-image: $fallback;
+		}
+	}
+}
