@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import queryString from 'query-string';
 import ItemsList from './items-list/items-list'
 
+import './_items-result.scss'
+
 class ItemsResult extends Component {
 
     defaultState = () => {
@@ -58,16 +60,33 @@ class ItemsResult extends Component {
     }
 
     render(){
-        return (
-            <div>
-                <div>
-                    {this.state.isLoaded?"loaded":"loading"}<br/>
-                    {this.state.items.length}<br/>
-                    {this.state.error?"error":""}
+        if (this.state.isLoaded) {
+            if (!this.state.error) {
+                return (
+                    <div>
+                        <div>
+                            <br/>
+                        </div>
+                        <ItemsList items={this.state.items} onItemClick={this.onItemClickHandler} />
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="no-results">
+                        No hay publicaciones que coincidan con tu búsqueda
+                    </div>
+                )
+            }
+        } else {
+            return (
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
                 </div>
-                <ItemsList items={this.state.items} onItemClick={this.onItemClickHandler} />
-            </div>
-        )
+            )
+        }
+        
     }
 }
 
