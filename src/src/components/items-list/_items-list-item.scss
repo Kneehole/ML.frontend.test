@@ -1,6 +1,10 @@
 @import '../../styles/image-2x';
 @import '../../styles/colors';
 
+.list_item:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .list_item {
     background-color: white;
     padding-top: 16px;
@@ -9,7 +13,6 @@
     border-bottom-width: 1px;
     border-bottom-color: $pallete_lightgray;
     border-bottom-style: solid;
-
 
     // Required to remove bootstrap padding
     .row > * {
