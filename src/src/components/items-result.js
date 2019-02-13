@@ -13,6 +13,7 @@ class ItemsResult extends Component {
     }
     state = this.defaultState();
 
+    // Lifecycle control
     componentDidMount = () => {
         this.getItems(this.getSearchParam(this.props))
     }
@@ -28,6 +29,7 @@ class ItemsResult extends Component {
         if (params.search && params.search.length > 0) return params.search
     }
 
+    // Fetch items from API
     getItems = (search) => {
         if (!search) return this.props.history.replace('/')
         this.setState(this.defaultState());
@@ -50,6 +52,11 @@ class ItemsResult extends Component {
         )
     }
 
+    // Handle item clicked
+    onItemClickHandler = (item) => {
+        this.props.history.push('/items/' + item.id)
+    }
+
     render(){
         return (
             <div>
@@ -58,7 +65,7 @@ class ItemsResult extends Component {
                     {this.state.items.length}<br/>
                     {this.state.error?"error":""}
                 </div>
-                <ItemsList items={this.state.items} />
+                <ItemsList items={this.state.items} onItemClick={this.onItemClickHandler} />
             </div>
         )
     }

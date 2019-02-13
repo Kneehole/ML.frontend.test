@@ -1,17 +1,16 @@
 import React from 'react'
 import ItemsListItem from './items-list-item'
 
-const ItemsList = (props) => {
-
-    const items = props.items.map((item) => {
+const ItemsList = ({onItemClick, items}) => {
+    const viewItems = items.map((item) => {
         return (
-            <ItemsListItem key={item.id} item={item}/>
+            <ItemsListItem key={item.id} item={item} onClick={(i) => onItemClick(i)}/>
         )
     })
 
     return (
         <div>
-            {items}
+            {viewItems}
         </div>
     )
 }

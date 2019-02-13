@@ -4,11 +4,11 @@ import './_items-list-item.scss'
 
 const Currency = require("../../utils/currency")
 
-const ItemsListItem = ({item}) => {
+const ItemsListItem = ({onClick, item}) => {
 
     const price = Currency.getSymbol(item.price.currency) + ' ' + (item.price.amount + item.price.decimals)
     return (
-        <Container className="list_item">
+        <Container className="list_item" onClick={() => onClick(item)}>
             <Row>
                 <Image src={item.picture} className="item_image" />
                 <Col  xs sm md>
