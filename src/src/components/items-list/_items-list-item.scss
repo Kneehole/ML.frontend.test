@@ -1,0 +1,62 @@
+@import '../../styles/image-2x';
+@import '../../styles/colors';
+
+.list_item {
+    background-color: white;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    border-bottom-width: 1px;
+    border-bottom-color: $pallete_lightgray;
+    border-bottom-style: solid;
+
+
+    // Required to remove bootstrap padding
+    .row > * {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .item_image {
+        margin-left: 16px;
+        margin-right: 16px;
+        width: 180px;
+        height: 180px;
+        border-radius: 4px;
+    }
+    
+    .price_shipping {
+        display: flex;
+        margin-top: 16px;
+        
+        .free_shipping {
+            width: 18px;
+            height: 18px;
+            margin-top: 10px;
+            margin-left: 10px;
+            @include image-2x(url('../../assets/ic_shipping@2x.png'), 
+               center, 
+               no-repeat, 
+               18px 18px, 
+               url('../../assets/ic_shipping.png'));
+        }
+        
+        .price {
+            font-size: 24px;
+            color: $pallete_black;
+        }
+    }
+
+    
+    .title {
+        margin-top: 32px;
+        font-size: 18px;
+        color: $pallete_black;
+    }
+    
+    .address {
+        margin-top: 16px;
+        font-size: 12px;
+        color: $pallete_gray;
+    }
+}

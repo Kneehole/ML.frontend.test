@@ -61,7 +61,8 @@ module.exports = {
             },
             "picture": item.thumbnail,
             "condition": item.condition,
-            "free_shipping": item.shipping.free_shipping
+            "free_shipping": item.shipping.free_shipping,
+            "address_state": item.address.state_name
         }
     }
 }
