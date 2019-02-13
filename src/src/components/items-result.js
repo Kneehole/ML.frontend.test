@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import queryString from 'query-string';
 import ItemsList from './items-list/items-list'
+import Breadcrumb from './breadcrumb/breadcrumb';
 
 import './_items-result.scss'
 
@@ -9,7 +10,8 @@ class ItemsResult extends Component {
     defaultState = () => {
         return {
             isLoaded: false,
-            items: [], 
+            items: [],
+            categories: [], 
             error: false
         }
     }
@@ -17,16 +19,18 @@ class ItemsResult extends Component {
 
     // Lifecycle control
     componentDidMount = () => {
-        this.getItems(this.getSearchParam(this.props))
+        this.getItems(this.getSearchParam())
     }
 
     componentDidUpdate = (prevProps) => {
-        const search = this.getSearchParam(this.props)
-        const prevSearch = this.getSearchParam(prevProps)
-        if (search !== prevSearch) this.getItems(search)
+        const search = this.getSearchParam()
+        if (search !== this.getSearchParam(prevProps)) {
+            this.getItems(search)
+        }
     }
 
-    getSearchParam =  (props) => {
+    getSearchParam = (props) => {
+        props = props || this.props
         const params = queryString.parse(props.location.search)
         if (params.search && params.search.length > 0) return params.search
     }
@@ -42,6 +46,7 @@ class ItemsResult extends Component {
                 this.setState({
                     isLoaded: true,
                     items: result.items ? result.items : [],
+                    categories: result.categories,
                     error: result.error ? true : false
                 });
             },
@@ -64,9 +69,7 @@ class ItemsResult extends Component {
             if (!this.state.error) {
                 return (
                     <div>
-                        <div>
-                            <br/>
-                        </div>
+                        <Breadcrumb items={this.state.categories}/>
                         <ItemsList items={this.state.items} onItemClick={this.onItemClickHandler} />
                     </div>
                 )
