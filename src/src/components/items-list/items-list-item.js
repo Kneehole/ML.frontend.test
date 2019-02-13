@@ -14,7 +14,7 @@ const ItemsListItem = ({onClick, item}) => {
                 <Col  xs sm md>
                     <div className="price_shipping">
                         <div className="price">{price}</div>
-                        <div className="free_shipping" />
+                        <div className={item.free_shipping ? "free_shipping" : ""} />
                     </div>
                     <div className="title">{item.title}</div>
                 </Col>
