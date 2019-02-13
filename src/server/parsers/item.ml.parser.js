@@ -30,13 +30,23 @@ module.exports = {
         const length = mlResults.length
         for (let index = 0; index < length; index++) {
             const mlItem = mlResults[index];
-            results.push(module.exports.parseItem(mlItem))
+            results.push(module.exports.parseSearchItem(mlItem))
         }
         return results;
     },
 
     /**
-     * Parse item detail from ml item detail and description
+     * Item builder from an ml search item
+     */
+    parseSearchItem: (item) => {
+        return Object.assign(module.exports.parseItem(item),
+        {
+            "address_state": item.address.state_name
+        })
+    },
+
+    /**
+     * Item builder from ml item detail and description
      */
     parseItemDetailResponse: (item, description) => {
         return Object.assign(module.exports.parseItem(item),
@@ -48,7 +58,7 @@ module.exports = {
     },
 
     /**
-     * Item builder from an ml search item
+     * Base Item builder 
      */
     parseItem: (item) => {
         return {
@@ -62,7 +72,6 @@ module.exports = {
             "picture": item.thumbnail,
             "condition": item.condition,
             "free_shipping": item.shipping.free_shipping,
-            "address_state": item.address.state_name
         }
     }
 }
