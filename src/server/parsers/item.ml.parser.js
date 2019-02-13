@@ -6,8 +6,11 @@ module.exports = {
      * Parse best items categories id from ml search response
      */
     parseItemsCategoriesId: (itemsObj) => {
-        const categories = itemsObj.available_filters.filter(item => item.id == "category")[0].values
-        return categories.sort((i1, i2) => i2.results - i1.results)[0].id
+        const allFilter = itemsObj.available_filters.concat(itemsObj.filters)
+        const categoryFilter = allFilter.filter(item => item.id == "category");
+        if (categoryFilter.length > 0) {
+            return categoryFilter[0].values.sort((i1, i2) => i2.results - i1.results)[0].id
+        }
     },
 
     /**
@@ -58,7 +61,8 @@ module.exports = {
             },
             "picture": item.thumbnail,
             "condition": item.condition,
-            "free_shipping": item.shipping.free_shipping
+            "free_shipping": item.shipping.free_shipping,
+            "address_state": item.address.state_name
         }
     }
 }

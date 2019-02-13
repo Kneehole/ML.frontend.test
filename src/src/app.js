@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Header from './components/Header/Header'
-import Home from './components/Home'
-import ItemsResult from './components/ItemsResult'
-import ItemDetail from './components/ItemDetail'
+import Header from './components/header/header'
+import Home from './components/home'
+import ItemsResult from './components/items-result'
+import ItemDetail from './components/item-detail'
 
-import './App.scss';
+import './app.scss';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="main">
           <Header/>
           <Switch>
             <Route path="/" exact component={Home}/>

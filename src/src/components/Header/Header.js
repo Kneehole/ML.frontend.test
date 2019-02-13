@@ -29,27 +29,27 @@ class Header extends Component {
 
     render() {
         return (
-            <Container className="header">
-                <Row>
-                    <Col xs={0} sm={0} md={1} />
-                    <Col xs={2} sm={2} md={1}>
-                        <Link to="/"><div className="logo"/></Link>
-                    </Col>
-                    <Col xs={9} sm={9} md={9}>
-                        <InputGroup className="mb-3">
-                            <FormControl
-                                placeholder="Nunca dejes de buscar"
-                                aria-label="Nunca dejes de buscar"
-                                onChange={this.inputChangeHandler}
-                                onKeyPress={this.inputKeyPressHandler}/>
-                            <InputGroup.Append>
-                                <InputGroup.Text onClick={this.inputSubmitHandler}><i className="ic-search"></i></InputGroup.Text>
-                            </InputGroup.Append>
-                        </InputGroup>
-                    </Col>
-                    <Col xs={1} sm={1} md={1} />
-                </Row>
-            </Container>
+            <div className="header">
+                <Container >
+                    <Row>
+                        <Col xs={2} sm={2} md={1}>
+                            <Link to="/"><div className="logo"/></Link>
+                        </Col>
+                        <Col xs={10} sm={10} md={11}>
+                            <InputGroup>
+                                <FormControl
+                                    placeholder="Nunca dejes de buscar"
+                                    aria-label="Nunca dejes de buscar"
+                                    onChange={this.inputChangeHandler}
+                                    onKeyPress={this.inputKeyPressHandler}/>
+                                <InputGroup.Append>
+                                    <InputGroup.Text onClick={this.inputSubmitHandler}><i className="ic-search"></i></InputGroup.Text>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         )
     }
 }

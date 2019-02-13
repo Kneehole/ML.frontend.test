@@ -2,18 +2,20 @@
 @import '../../styles/image-2x';
 @import '../../styles/colors';
 
-.container.header {
+.header {
     background-color: $pallete_yellow;
-    width: 100%;
-    max-width: 100%;
-    padding-top: 15px;
-    margin-left: 0;
-    margin-right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    // Required to remove bootstrap padding
+    .row > * {
+        padding-left: 0;
+        padding-right: 0;
+    }
     
     .logo {
         width: 53px;
         height: 36px;
-        margin-left: auto;
         @include image-2x(url('../../assets/Logo_ML@2x.png'), 
 		   center, 
 		   no-repeat, 
@@ -23,6 +25,7 @@
 
     input {
         font-size: 18px;
+        color: $pallete_black;
     }
 
     .ic-search {
