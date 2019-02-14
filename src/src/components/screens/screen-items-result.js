@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import queryString from 'query-string';
-import ItemsList from './items-list/items-list'
-import Breadcrumb from './breadcrumb/breadcrumb';
+import ItemsList from '../items-list/items-list'
+import Breadcrumb from '../breadcrumb/breadcrumb';
+import Spinner from '../spinner/spinner';
 
-import './_items-result.scss'
+import './_screens.scss'
 
-class ItemsResult extends Component {
+class ScreenItemsResult extends Component {
 
     defaultState = () => {
         return {
@@ -82,15 +83,11 @@ class ItemsResult extends Component {
             }
         } else {
             return (
-                <div className="d-flex justify-content-center">
-                    <div className="spinner-border" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                </div>
+                <Spinner/>
             )
         }
         
     }
 }
 
-export default ItemsResult;
+export default ScreenItemsResult;

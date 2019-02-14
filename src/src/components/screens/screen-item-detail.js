@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import Breadcrumb from './breadcrumb/breadcrumb'
+import Breadcrumb from '../breadcrumb/breadcrumb'
+import ItemDetail from '../item-detail/item-detail'
+import Spinner from '../spinner/spinner'
 
-class ItemDetail extends Component {
+class ScreenItemDetail extends Component {
 
     defaultState = () => {
         return {
@@ -39,7 +41,7 @@ class ItemDetail extends Component {
             .then((result) => {
                 this.setState({
                     isLoaded: true,
-                    item: result.items ? result.items : {},
+                    item: result.item ? result.item : {},
                     categories: result.categories ? result.categories : [],
                     error: result.error ? true : false
                 });
@@ -53,15 +55,37 @@ class ItemDetail extends Component {
         )
     }
 
+    // Handle buy button
+    addToCart = () => {
+        alert("Función no disponible")
+    }
+
     render () {
-        return (
-            <div>
-                <Breadcrumb items={this.state.categories}/>
-                {this.state.item.title}
-                {this.state.error ? "Error" : ""}
-            </div>
-        )
+        if (this.state.isLoaded) {
+            if (!this.state.error) {
+                return (
+                    <div>
+                        <Breadcrumb items={this.state.categories}/>
+                        <ItemDetail item={this.state.item} addToCartClick={this.addToCart}/>
+                        {this.state.error ? "Error" : ""}
+                    </div>
+                )
+            } else {
+                return (
+                    <div>
+                        <div className="alert_icon"/>
+                        <div className="no-results">
+                            Parece que la página no existe
+                        </div>
+                    </div>
+                )
+            }
+        } else {
+            return (
+                <Spinner/>
+            )
+        }
     }   
 }
 
-export default ItemDetail;
+export default ScreenItemDetail;

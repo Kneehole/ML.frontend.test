@@ -1,0 +1,75 @@
+
+@import '../../styles/colors';
+
+.item_detail_container {
+    background-color: white;
+
+    // Required to remove bootstrap padding
+    .row > * {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .image {
+        width: 100%;
+        max-width: 680px;
+        margin-top: 32px;
+    }
+
+    .right_col {
+        padding-right: 32px;
+    }
+
+    .condition_sold {
+        font-size: 14px;
+        color: $pallete_darkgray;
+        margin-top: 32px;
+    }
+
+    .title {
+        font-size: 24px;
+        color: $pallete_black;
+        margin-top: 16px;
+    }
+
+    .price {
+        font-size: 46px;
+        color: $pallete_black;
+        margin-top: 32px;
+    }
+
+    .buy_button {
+        margin-top: 32px;
+        width: 100%;
+        background-color: $pallete_blue;
+        border-color: $pallete_blue;
+    }
+
+    .desc_title {
+        font-size: 28px;
+        color: $pallete_black;
+        margin-top: 32px;
+        padding-left: 32px;
+    }
+
+    .description {
+        font-size: 16px;
+        color: $pallete_gray;
+        margin-top: 32px;
+        margin-bottom: 32px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    @media (max-width: 576px) {
+        .title {
+            font-size: 20px;
+        }
+
+        .price {
+            font-size: 32px;
+            color: $pallete_black;
+            margin-top: 16px;
+        }
+    }
+}

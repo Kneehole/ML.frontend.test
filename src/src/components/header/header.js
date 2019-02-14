@@ -23,7 +23,7 @@ class Header extends Component {
 
     inputSubmitHandler = () => {
         if (this.state.searchQuery.length > 0) {
-            this.props.history.push('items?search=' + this.state.searchQuery)
+            this.props.history.push('/items?search=' + this.state.searchQuery)
         }
     }
 

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Header from './components/header/header'
-import Home from './components/home'
-import ItemsResult from './components/items-result'
-import ItemDetail from './components/item-detail'
+import ScreenHome from './components/screens/screen-home'
+import ScreenItemsResult from './components/screens/screen-items-result'
+import ScreenItemDetail from './components/screens/screen-item-detail'
 
 import './app.scss';
 
@@ -15,9 +15,9 @@ class App extends Component {
         <div className="main">
           <Header/>
           <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/items" exact component={ItemsResult}/>
-            <Route path="/items/:id" component={ItemDetail}/>
+            <Route path="/" exact component={ScreenHome}/>
+            <Route path="/items" exact component={ScreenItemsResult}/>
+            <Route path="/items/:id" component={ScreenItemDetail}/>
           </Switch>
         </div>  
       </BrowserRouter>
