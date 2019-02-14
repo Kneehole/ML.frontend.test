@@ -4,9 +4,14 @@ import { Container, Row, Col, Image, Button } from 'react-bootstrap'
 import './_item-detail.scss'
 
 const Currency = require("../../utils/currency")
+const Condition = require("../../utils/item_condition")
 
-const ItemDetail = ({item}) => {
+const ItemDetail = ({item, addToCartClick}) => {
     
+    const addToCartHandler = () => {
+        addToCartClick()
+    }
+
     // empty item
     if (!item || Object.keys(item).length === 0) {
         return (<div></div>)
@@ -20,11 +25,11 @@ const ItemDetail = ({item}) => {
                     <Image src={item.picture} className="image" />
                 </Col>
                 <Col xs={6} sm md={4} className="right_col"> 
-                    <div className="state_sold">{item.state} - {item.sold_count} vendidos</div>
+                    <div className="condition_sold">{Condition.getDescription(item.condition)} - {item.sold_quantity} vendidos</div>
                     <div className="title">{item.title}</div>
                     <div className="price">{price}</div>
 
-                    <Button className="buy_button">Comprar</Button>
+                    <Button className="buy_button" onClick={addToCartHandler}>Comprar</Button>
                 </Col>
             </Row>
             <Row>

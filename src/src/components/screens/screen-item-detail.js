@@ -54,11 +54,15 @@ class ScreenItemDetail extends Component {
         )
     }
 
+    addToCart = () => {
+        alert("Función no disponible")
+    }
+
     render () {
         return (
             <div>
                 <Breadcrumb items={this.state.categories}/>
-                <ItemDetail item={this.state.item}/>
+                <ItemDetail item={this.state.item} addToCartClick={this.addToCart}/>
                 {this.state.error ? "Error" : ""}
             </div>
         )
