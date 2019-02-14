@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Breadcrumb from '../breadcrumb/breadcrumb'
 import ItemDetail from '../item-detail/item-detail'
+import Spinner from '../spinner/spinner'
 
 class ScreenItemDetail extends Component {
 
@@ -54,18 +55,36 @@ class ScreenItemDetail extends Component {
         )
     }
 
+    // Handle buy button
     addToCart = () => {
         alert("Función no disponible")
     }
 
     render () {
-        return (
-            <div>
-                <Breadcrumb items={this.state.categories}/>
-                <ItemDetail item={this.state.item} addToCartClick={this.addToCart}/>
-                {this.state.error ? "Error" : ""}
-            </div>
-        )
+        if (this.state.isLoaded) {
+            if (!this.state.error) {
+                return (
+                    <div>
+                        <Breadcrumb items={this.state.categories}/>
+                        <ItemDetail item={this.state.item} addToCartClick={this.addToCart}/>
+                        {this.state.error ? "Error" : ""}
+                    </div>
+                )
+            } else {
+                return (
+                    <div>
+                        <div className="alert_icon"/>
+                        <div className="no-results">
+                            Parece que la página no existe
+                        </div>
+                    </div>
+                )
+            }
+        } else {
+            return (
+                <Spinner/>
+            )
+        }
     }   
 }
 

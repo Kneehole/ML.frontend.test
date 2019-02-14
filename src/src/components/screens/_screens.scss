@@ -1,14 +1,20 @@
 @import '../../styles/colors';
 
-.spinner-border {
-    margin-top: 60px;
-    color: $pallete_gray;
-}
-
 .no-results {
     text-align: center;
     margin-top: 30px;
     font-size: 24px;
     margin-left: 16px;
     margin-right: 16px;
+}
+
+.alert_icon {
+    background-image: url(../../assets/Alert.png);
+    background-size: cover;
+    width: 62px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+
 }
