@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import Breadcrumb from './breadcrumb/breadcrumb'
+import Breadcrumb from '../breadcrumb/breadcrumb'
+import ItemDetail from '../item-detail/item-detail'
 
-class ItemDetail extends Component {
+class ScreenItemDetail extends Component {
 
     defaultState = () => {
         return {
@@ -39,7 +40,7 @@ class ItemDetail extends Component {
             .then((result) => {
                 this.setState({
                     isLoaded: true,
-                    item: result.items ? result.items : {},
+                    item: result.item ? result.item : {},
                     categories: result.categories ? result.categories : [],
                     error: result.error ? true : false
                 });
@@ -57,11 +58,11 @@ class ItemDetail extends Component {
         return (
             <div>
                 <Breadcrumb items={this.state.categories}/>
-                {this.state.item.title}
+                <ItemDetail item={this.state.item}/>
                 {this.state.error ? "Error" : ""}
             </div>
         )
     }   
 }
 
-export default ItemDetail;
+export default ScreenItemDetail;

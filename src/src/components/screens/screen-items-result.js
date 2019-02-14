@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import queryString from 'query-string';
-import ItemsList from './items-list/items-list'
-import Breadcrumb from './breadcrumb/breadcrumb';
+import ItemsList from '../items-list/items-list'
+import Breadcrumb from '../breadcrumb/breadcrumb';
 
-import './_items-result.scss'
+import './_screens.scss'
 
-class ItemsResult extends Component {
+class ScreenItemsResult extends Component {
 
     defaultState = () => {
         return {
@@ -93,4 +93,4 @@ class ItemsResult extends Component {
     }
 }
 
-export default ItemsResult;
+export default ScreenItemsResult;
