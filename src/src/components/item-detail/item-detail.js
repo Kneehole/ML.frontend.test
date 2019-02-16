@@ -17,10 +17,6 @@ const ItemDetail = ({item, addToCartClick}) => {
         return (<div></div>)
     }
 
-    // <Col xs={6} sm md={9} className="image-container">
-    //                 <Image src={item.picture} className="image" />
-    //             </Col>
-
     const price = Currency.getSymbol(item.price.currency) + ' ' + (item.price.amount + item.price.decimals)
     return (
         <Container className="item_detail_container">
