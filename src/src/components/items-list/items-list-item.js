@@ -11,7 +11,7 @@ const ItemsListItem = ({onClick, item}) => {
         <Container className="list_item" onClick={() => onClick(item)}>
             <Row>
                 <Image src={item.picture} className="item_image" />
-                <Col  xs sm md>
+                <Col xs sm md className="middle_container">
                     <div className="price_shipping">
                         <div className="price">{price}</div>
                         <div className={item.free_shipping ? "free_shipping" : ""} />

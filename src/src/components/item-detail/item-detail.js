@@ -21,10 +21,10 @@ const ItemDetail = ({item, addToCartClick}) => {
     return (
         <Container className="item_detail_container">
             <Row>
-                <Col xs={6} sm md={8}>
+                <Col xs={6} sm md={9} className="image_col">
                     <Image src={item.picture} className="image" />
                 </Col>
-                <Col xs={6} sm md={4} className="right_col"> 
+                <Col xs={6} sm md className="right_col"> 
                     <div className="condition_sold">{Condition.getDescription(item.condition)} - {item.sold_quantity} vendidos</div>
                     <div className="title">{item.title}</div>
                     <div className="price">{price}</div>

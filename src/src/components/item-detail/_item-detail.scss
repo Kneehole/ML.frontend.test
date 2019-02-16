@@ -1,29 +1,30 @@
 
 @import '../../styles/colors';
 
-.item_detail_container {
+.container.item_detail_container {
     background-color: white;
+    padding: 32px;
+    margin-bottom: 64px;
+    border-radius: 4px;
 
-    // Required to remove bootstrap padding
-    .row > * {
-        padding-left: 0;
-        padding-right: 0;
+    .image_col {
+        max-width: 710px; // 680 + 30 (bootstrap paddings)
+        padding-right: 0px;
     }
 
     .image {
         width: 100%;
         max-width: 680px;
-        margin-top: 32px;
+        border-radius: 4px;
     }
 
     .right_col {
-        padding-right: 32px;
+        padding-left: 17px;
     }
 
     .condition_sold {
         font-size: 14px;
         color: $pallete_darkgray;
-        margin-top: 32px;
     }
 
     .title {
@@ -49,16 +50,12 @@
         font-size: 28px;
         color: $pallete_black;
         margin-top: 32px;
-        padding-left: 32px;
     }
 
     .description {
         font-size: 16px;
         color: $pallete_gray;
         margin-top: 32px;
-        margin-bottom: 32px;
-        padding-left: 32px;
-        padding-right: 32px;
     }
 
     @media (max-width: 576px) {
