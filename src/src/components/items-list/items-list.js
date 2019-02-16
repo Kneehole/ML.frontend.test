@@ -1,5 +1,6 @@
 import React from 'react'
 import ItemsListItem from './items-list-item'
+import './_items-list.scss'
 
 const ItemsList = ({onItemClick, items}) => {
     const viewItems = items.map((item) => {
@@ -9,7 +10,7 @@ const ItemsList = ({onItemClick, items}) => {
     })
 
     return (
-        <div>
+        <div className="list_container">
             {viewItems}
         </div>
     )
