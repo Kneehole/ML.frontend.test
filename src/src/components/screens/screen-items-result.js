@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet';
+
 import queryString from 'query-string';
 import ItemsList from '../items-list/items-list'
 import Breadcrumb from '../breadcrumb/breadcrumb';
@@ -17,10 +19,11 @@ class ScreenItemsResult extends Component {
             isLoaded: false,
             items: [],
             categories: [], 
-            error: false
+            error: false,
+            searchParam: ''
         }
     }
-    state = this.defaultState();
+    state = this.defaultState()
 
     // Lifecycle control
     componentDidMount = () => {
@@ -49,7 +52,9 @@ class ScreenItemsResult extends Component {
      */ 
     getItems = (search) => {
         if (!search) return this.props.history.replace('/')
-        this.setState(this.defaultState());
+        this.setState({
+            ...this.defaultState(), 
+            searchParam:search});
 
         fetch("/api/items?q=" + search)
             .then(res => res.json())
@@ -80,6 +85,9 @@ class ScreenItemsResult extends Component {
             if (!this.state.error) {
                 return (
                     <div>
+                        <Helmet>
+                            <title>{this.state.searchParam} en ML Challenge</title>
+                        </Helmet>
                         <Breadcrumb items={this.state.categories}/>
                         <ItemsList items={this.state.items} onItemClick={this.onItemClickHandler} />
                     </div>

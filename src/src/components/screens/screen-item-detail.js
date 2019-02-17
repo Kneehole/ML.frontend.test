@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import { Helmet } from 'react-helmet';
+
 import Breadcrumb from '../breadcrumb/breadcrumb'
 import ItemDetail from '../item-detail/item-detail'
 import Spinner from '../spinner/spinner'
@@ -77,6 +79,10 @@ class ScreenItemDetail extends Component {
             if (!this.state.error) {
                 return (
                     <div>
+                        <Helmet>
+                            <title>{this.state.item.title} en ML Challenge</title>
+                            <meta name="description" content={this.state.item.description} />
+                        </Helmet>
                         <Breadcrumb items={this.state.categories}/>
                         <ItemDetail item={this.state.item} addToCartClick={this.addToCart}/>
                     </div>
