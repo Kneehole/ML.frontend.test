@@ -8,6 +8,7 @@ import ScreenItemDetail from './components/screens/screen-item-detail'
 
 import './app.scss';
 
+/** Main react component */
 class App extends Component {
   render() {
     return (

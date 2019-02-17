@@ -3,24 +3,28 @@ import { Link, withRouter } from 'react-router-dom'
 import { Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap'
 import './_header.scss'
 
+/** Header's Component with search input bar */
 class Header extends Component {
 
     state = {
         searchQuery: ''
     }
 
+    /** Search value changed handler */
     inputChangeHandler = (event) => {
         this.setState({
             searchQuery: event.target.value
         })
     }
 
+    /** The 'enter' key pressed handler */
     inputKeyPressHandler = (event) => {
         if (event.key === "Enter") {
             this.inputSubmitHandler();
         }
     }
 
+    /** Submit & search action */
     inputSubmitHandler = () => {
         if (this.state.searchQuery.length > 0) {
             this.setState({

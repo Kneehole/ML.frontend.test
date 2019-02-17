@@ -4,7 +4,12 @@ const rp = require('request-promise')
 const credentials = require("../credentials")
 const itemparser = require("../parsers/item.ml.parser")
 
+/** API items controller */
 module.exports = {
+
+    /** Retrieve all items for an specific 'q' search value 
+     * @property {string} q - The key value for search items as query string
+    */
     getAll: (req, res, next) => {
 
         // Chains items search and dependant categories search
@@ -31,6 +36,9 @@ module.exports = {
         })
     },
 
+    /** Retrieve an item information 
+     * @property {string} id - The item's id as a param
+    */
     getItem: (req, res, next) => {
 
         Promise.all([

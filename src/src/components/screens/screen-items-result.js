@@ -6,8 +6,12 @@ import Spinner from '../spinner/spinner';
 
 import './_screens.scss'
 
+/** Component that represents an items list result screen */
 class ScreenItemsResult extends Component {
 
+    /** Get default state preset
+     * @return {Object}
+     */
     defaultState = () => {
         return {
             isLoaded: false,
@@ -30,13 +34,19 @@ class ScreenItemsResult extends Component {
         }
     }
 
+    /** Get the Query string search value
+     * @param {Object} props - current props to parse
+     * @return {string}
+     */
     getSearchParam = (props) => {
         props = props || this.props
         const params = queryString.parse(props.location.search)
         if (params.search && params.search.length > 0) return params.search
     }
 
-    // Fetch items from API
+    /** Fetch items from API 
+     * @param {string} search - search value to use for fetching results
+     */ 
     getItems = (search) => {
         if (!search) return this.props.history.replace('/')
         this.setState(this.defaultState());
@@ -60,7 +70,7 @@ class ScreenItemsResult extends Component {
         )
     }
 
-    // Handle item clicked
+    /** Handle item click */ 
     onItemClickHandler = (item) => {
         this.props.history.push('/items/' + item.id)
     }

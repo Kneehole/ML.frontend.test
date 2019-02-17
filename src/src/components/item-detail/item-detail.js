@@ -6,18 +6,22 @@ import './_item-detail.scss'
 const Currency = require("../../utils/currency")
 const Condition = require("../../utils/item_condition")
 
+/** Component of an item detail 
+ * @property {array} item - the item to display
+ * @property {function} addToCartClick - callback for handling buy action
+ */
 const ItemDetail = ({item, addToCartClick}) => {
     
+    /** Handle click and forward upwards*/
     const addToCartHandler = () => {
         addToCartClick()
     }
 
-    // empty item
+    // Empty item control 
     if (!item || Object.keys(item).length === 0) {
         return (<div></div>)
     }
 
-    const price = Currency.getSymbol(item.price.currency) + ' ' + (item.price.amount + item.price.decimals)
     return (
         <Container className="item_detail_container">
             <Row>
@@ -27,7 +31,7 @@ const ItemDetail = ({item, addToCartClick}) => {
                 <Col xs={6} sm md className="right_col"> 
                     <div className="condition_sold"><span>{Condition.getDescription(item.condition)}</span> - <span>{item.sold_quantity}</span> vendidos</div>
                     <h1 className="title">{item.title}</h1>
-                    <p className="price">{price}</p>
+                    <p className="price">{Currency.getFullPriceDescription(item.price)}</p>
 
                     <Button className="buy_button" onClick={addToCartHandler}>Comprar</Button>
                 </Col>

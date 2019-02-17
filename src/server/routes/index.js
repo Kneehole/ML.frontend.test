@@ -1,8 +1,6 @@
 const item = require('./item')
 
-/**
- * This module centrilize router configuration
- */
+/** Module to centralize routing configuration */
 module.exports = (router) => {
     item(router)
 }

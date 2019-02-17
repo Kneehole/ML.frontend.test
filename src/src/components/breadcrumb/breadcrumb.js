@@ -10,11 +10,6 @@ import './_breadcrumb.scss'
  */
 const Breadcrumb = ({items}) => {
 
-    let nestingText = ''
-    items.forEach(item => {
-        nestingText += (nestingText.length ? ' > ' : '') + item
-    });
-
     const viewItems = items.map(item => {
         return (
             <span key={item}>

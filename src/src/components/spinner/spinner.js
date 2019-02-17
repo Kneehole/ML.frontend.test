@@ -2,6 +2,7 @@ import React from 'react'
 
 import './_spinner.scss'
 
+/** Component that represents a loading spinner */
 const Spinner = () => {
     return (
         <div className="d-flex justify-content-center">
