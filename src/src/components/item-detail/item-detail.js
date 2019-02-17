@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, Row, Col, Image, Button } from 'react-bootstrap'
+import Price from '../price/price'
 
 import './_item-detail.scss'
 
-const Currency = require("../../utils/currency")
 const Condition = require("../../utils/item_condition")
 
 /** Component of an item detail 
@@ -31,8 +31,7 @@ const ItemDetail = ({item, addToCartClick}) => {
                 <Col xs={6} sm md className="right_col"> 
                     <div className="condition_sold"><span>{Condition.getDescription(item.condition)}</span> - <span>{item.sold_quantity}</span> vendidos</div>
                     <h1 className="title">{item.title}</h1>
-                    <p className="price">{Currency.getFullPriceDescription(item.price)}</p>
-
+                    <div className="price"><Price  price={item.price} /></div>
                     <Button className="buy_button" onClick={addToCartHandler}>Comprar</Button>
                 </Col>
             </Row>

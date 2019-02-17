@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
-import './_items-list-item.scss'
+import Price from '../price/price'
 
-const Currency = require("../../utils/currency")
+import './_items-list-item.scss'
 
 /**
  * Function for callback 'onClick(item)'
@@ -20,7 +20,7 @@ const ItemsListItem = ({onClick, item}) => {
                 <Image src={item.picture} alt={item.title} className="item_image" />
                 <Col xs sm md className="middle_container">
                     <div className="price_shipping">
-                        <p className="price">{Currency.getFullPriceDescription(item.price)}</p>
+                        <div className="price"><Price  price={item.price} /></div>
                         <div className={item.free_shipping ? "free_shipping" : ""} />
                     </div>
                     <h2 className="title">{item.title}</h2>
