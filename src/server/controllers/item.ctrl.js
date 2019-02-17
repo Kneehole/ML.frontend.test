@@ -32,7 +32,7 @@ module.exports = {
         .catch(function (error) {
             console.dir(error)
             if (error.response && error.response.body) return res.send(error.response.body)
-            return res.send(error)
+            return res.status(500).send("Something gone wrong retrieving the list of items")
         })
     },
 
@@ -63,7 +63,7 @@ module.exports = {
         .catch(function (error) {
             console.dir(error)
             if (error.response && error.response.body) return res.send(error.response.body)
-            return res.send(error)
+            return res.status(500).send("Something gone wrong retrieving the item")
         })
     }
 }
