@@ -1,25 +1,32 @@
 import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import Price from '../price/price'
+
 import './_items-list-item.scss'
 
-const Currency = require("../../utils/currency")
+/**
+ * Function for callback 'onClick(item)'
+ * @param {Object} item - The item clicked 
+ */
 
+/** Component of an item from the ItemsList  
+ * @property {array} item - the item to display
+ * @property {function} onClick - callback for item clicking detection
+ */
 const ItemsListItem = ({onClick, item}) => {
-
-    const price = Currency.getSymbol(item.price.currency) + ' ' + (item.price.amount + item.price.decimals)
     return (
         <Container className="list_item" onClick={() => onClick(item)}>
             <Row>
-                <Image src={item.picture} className="item_image" />
+                <Image src={item.picture} alt={item.title} className="item_image" />
                 <Col xs sm md className="middle_container">
                     <div className="price_shipping">
-                        <div className="price">{price}</div>
+                        <div className="price"><Price  price={item.price} /></div>
                         <div className={item.free_shipping ? "free_shipping" : ""} />
                     </div>
-                    <div className="title">{item.title}</div>
+                    <h2 className="title">{item.title}</h2>
                 </Col>
                 <Col sm={2} md={2} className="d-none d-sm-block">
-                    <div className="address">{item.address_state}</div>
+                    <p className="address">{item.address_state}</p>
                 </Col>
             </Row>
              

@@ -1,9 +1,11 @@
 
-
+/** Module to parse ML objects */
 module.exports = {
     
     /**
-     * Parse best items categories id from ml search response
+     * Parse best items category id from ml search response
+     * @param {object} itemsObj - ML search response object 
+     * @return {string}
      */
     parseItemsCategoriesId: (itemsObj) => {
         const allFilter = itemsObj.available_filters.concat(itemsObj.filters)
@@ -15,13 +17,17 @@ module.exports = {
 
     /**
      * Parse categories from ml categories response
+     * @param {object} categoryObj - ML category response object
+     * @return {array}
      */
-    parseCategories: (categoriesObj) => {
-        return categoriesObj.path_from_root.map(item => item.name)
+    parseCategories: (categoryObj) => {
+        return categoryObj.path_from_root.map(item => item.name)
     },
 
     /**
      * Parse items from ml search response
+     * @param {bodyObj} - ML search response object
+     * @return {array}
      */
     parseItemsResponse: (bodyObj) => {
         const mlResults = bodyObj.results
@@ -37,6 +43,8 @@ module.exports = {
 
     /**
      * Item builder from an ml search item
+     * @param {object} item - ML item object
+     * @return {object}
      */
     parseSearchItem: (item) => {
         return Object.assign(module.exports.parseItem(item),
@@ -47,6 +55,9 @@ module.exports = {
 
     /**
      * Item builder from ml item detail and description
+     * @param {object} item - ML item object
+     * @param {string} description - ML item description
+     * @return {object}
      */
     parseItemDetailResponse: (item, description) => {
         return Object.assign(module.exports.parseItem(item),
@@ -59,6 +70,8 @@ module.exports = {
 
     /**
      * Base Item builder 
+     * @param {object} item - ML base item object
+     * @return {object}
      */
     parseItem: (item) => {
         return {

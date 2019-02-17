@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import { Container, Row } from 'react-bootstrap'
 import './_breadcrumb.scss'
 
@@ -8,15 +10,18 @@ import './_breadcrumb.scss'
  */
 const Breadcrumb = ({items}) => {
 
-    let nestingText = ''
-    items.forEach(item => {
-        nestingText += (nestingText.length ? ' > ' : '') + item
-    });
+    const viewItems = items.map(item => {
+        return (
+            <span key={item}>
+                <Link to={"/items?search=" + item}>{item}</Link> {items[items.length-1] !== item ? " > " : ""}
+            </span>
+        )
+    })
 
     return (
         <Container>
             <Row>
-             <div className="breadcrumbText">{nestingText}</div>
+             <div className="breadcrumbText">{viewItems}</div>
             </Row>
         </Container>
     )

@@ -4,7 +4,12 @@ const rp = require('request-promise')
 const credentials = require("../credentials")
 const itemparser = require("../parsers/item.ml.parser")
 
+/** API items controller */
 module.exports = {
+
+    /** Retrieve all items for an specific 'q' search value 
+     * @property {string} q - The key value for search items as query string
+    */
     getAll: (req, res, next) => {
 
         // Chains items search and dependant categories search
@@ -27,10 +32,13 @@ module.exports = {
         .catch(function (error) {
             console.dir(error)
             if (error.response && error.response.body) return res.send(error.response.body)
-            return res.send(error)
+            return res.status(500).send("Something gone wrong retrieving the list of items")
         })
     },
 
+    /** Retrieve an item information 
+     * @property {string} id - The item's id as a param
+    */
     getItem: (req, res, next) => {
 
         Promise.all([
@@ -55,7 +63,7 @@ module.exports = {
         .catch(function (error) {
             console.dir(error)
             if (error.response && error.response.body) return res.send(error.response.body)
-            return res.send(error)
+            return res.status(500).send("Something gone wrong retrieving the item")
         })
     }
 }

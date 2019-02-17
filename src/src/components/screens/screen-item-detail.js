@@ -1,10 +1,16 @@
 import React, {Component} from 'react'
+import { Helmet } from 'react-helmet';
+
 import Breadcrumb from '../breadcrumb/breadcrumb'
 import ItemDetail from '../item-detail/item-detail'
 import Spinner from '../spinner/spinner'
 
+/** Component that represent an item detail's screen  */
 class ScreenItemDetail extends Component {
 
+    /** Get default state preset
+     * @return {Object}
+     */
     defaultState = () => {
         return {
             isLoaded: false,
@@ -26,12 +32,18 @@ class ScreenItemDetail extends Component {
         }
     }
 
+    /** Get the item id from url path
+     * @param {Object} props - current props to parse
+     * @return {string}
+     */
     getItemId = (props) => {
         props = props || this.props
         return props.match.params.id
     }
 
-    // Fetch items from API
+    /** Fetch item detail from API 
+     * @param {string} itemId - item id to use for fetching the detail
+     */
     getDetail = (itemId) => {
         if (!itemId) return this.props.history.replace('/')
         this.setState(this.defaultState());
@@ -55,7 +67,9 @@ class ScreenItemDetail extends Component {
         )
     }
 
-    // Handle buy button
+    /** Handle buy button click 
+     * @todo Incomplete action for buying process
+     */ 
     addToCart = () => {
         alert("Función no disponible")
     }
@@ -65,9 +79,12 @@ class ScreenItemDetail extends Component {
             if (!this.state.error) {
                 return (
                     <div>
+                        <Helmet>
+                            <title>{this.state.item.title} en ML Challenge</title>
+                            <meta name="description" content={this.state.item.description} />
+                        </Helmet>
                         <Breadcrumb items={this.state.categories}/>
                         <ItemDetail item={this.state.item} addToCartClick={this.addToCart}/>
-                        {this.state.error ? "Error" : ""}
                     </div>
                 )
             } else {
