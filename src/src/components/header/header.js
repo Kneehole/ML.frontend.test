@@ -23,6 +23,9 @@ class Header extends Component {
 
     inputSubmitHandler = () => {
         if (this.state.searchQuery.length > 0) {
+            this.setState({
+                searchQuery: ""
+            })
             this.props.history.push('/items?search=' + this.state.searchQuery)
         }
     }
@@ -38,6 +41,7 @@ class Header extends Component {
                         <Col xs={10} sm={10} md={11}>
                             <InputGroup>
                                 <FormControl
+                                    value={this.state.searchQuery}
                                     placeholder="Nunca dejes de buscar"
                                     aria-label="Nunca dejes de buscar"
                                     onChange={this.inputChangeHandler}

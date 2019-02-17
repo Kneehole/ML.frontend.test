@@ -67,7 +67,6 @@ class ScreenItemDetail extends Component {
                     <div>
                         <Breadcrumb items={this.state.categories}/>
                         <ItemDetail item={this.state.item} addToCartClick={this.addToCart}/>
-                        {this.state.error ? "Error" : ""}
                     </div>
                 )
             } else {
