@@ -1,0 +1,18 @@
+
+@import '../../styles/colors';
+
+.breadcrumbText {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: $pallete_gray;
+
+    a {
+        color: $pallete_gray;
+    }
+    
+    a:hover {
+        color: $pallete_darkgray;
+    }
+
+}

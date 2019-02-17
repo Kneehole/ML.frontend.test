@@ -1,0 +1,72 @@
+
+@import '../../styles/colors';
+
+.container.item_detail_container {
+    background-color: white;
+    padding: 32px;
+    margin-bottom: 64px;
+    border-radius: 4px;
+
+    .image_col {
+        max-width: 710px; // 680 + 30 (bootstrap paddings)
+        padding-right: 0px;
+    }
+
+    .image {
+        width: 100%;
+        max-width: 680px;
+        border-radius: 4px;
+    }
+
+    .right_col {
+        padding-left: 17px;
+    }
+
+    .condition_sold {
+        font-size: 14px;
+        color: $pallete_darkgray;
+    }
+
+    .title {
+        font-size: 24px;
+        color: $pallete_black;
+        margin-top: 16px;
+    }
+
+    .price {
+        font-size: 46px;
+        color: $pallete_black;
+        margin-top: 32px;
+    }
+
+    .buy_button {
+        margin-top: 32px;
+        width: 100%;
+        background-color: $pallete_blue;
+        border-color: $pallete_blue;
+    }
+
+    .desc_title {
+        font-size: 28px;
+        color: $pallete_black;
+        margin-top: 32px;
+    }
+
+    .description {
+        font-size: 16px;
+        color: $pallete_gray;
+        margin-top: 32px;
+    }
+
+    @media (max-width: 576px) {
+        .title {
+            font-size: 20px;
+        }
+
+        .price {
+            font-size: 32px;
+            color: $pallete_black;
+            margin-top: 16px;
+        }
+    }
+}

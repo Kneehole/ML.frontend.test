@@ -1,5 +1,6 @@
-const article = require('./article')
+const item = require('./item')
 
+/** Module to centralize routing configuration */
 module.exports = (router) => {
-    article(router)
+    item(router)
 }
